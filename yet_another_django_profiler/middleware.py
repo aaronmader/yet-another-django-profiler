@@ -181,6 +181,7 @@ class ProfilerMiddleware(object):
 
     def process_response(self, request, response):
         if self.profile_parameter is not None:
+            response.status_code = 200
             if self.error:
                 return text_response(response, self.error)
             self.profiler.create_stats()
